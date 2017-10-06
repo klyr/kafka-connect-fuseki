@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+version = '0.1'
+
+repositories {
+    mavenCentral()
+}
+
+task fatJar(type: Jar) {
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+dependencies {
+    compile group: 'org.apache.kafka', name: 'connect-api', version: '0.11.0.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.1'
+    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.9.0'
+}
