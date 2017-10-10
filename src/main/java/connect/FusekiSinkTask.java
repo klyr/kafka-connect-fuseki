@@ -89,7 +89,7 @@ public class FusekiSinkTask extends SinkTask {
 	    Request request = new Request.Builder()
 		.url(fusekiUrl)
 		.header("Content-Type", "application/ld+json")
-		.put(body)
+		.post(body)
 		.build();
 
 	    Response response = null;
